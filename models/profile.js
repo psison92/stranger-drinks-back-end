@@ -9,7 +9,8 @@ const profileSchema = new mongoose.Schema({
   email: { type: String, required: true, lowercase: true, unique: true },
   name: String,
   hangoverTip: [hangoverTipSchema],
-  favoriteDrinks;{[]}
+  favoriteDrinks:[{type:mongoose.Schema.Types.ObjectId, ref:"Drink"}],
+  drinkList: [{type:mongoose.Schema.Types.ObjectId, ref:"Drink"}]
 },{
   timestamps: true,
 })
