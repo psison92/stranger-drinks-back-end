@@ -1,9 +1,96 @@
 import { Ingredient } from '../models/ingredient.js';
 import { Drink } from '../models/drink.js'
 
-
-
-export{
-
+function create(req, res) {
+  req.body.owner = req.user.profile
+  Drink.create(req.body)
+  .then(drink => {
+    Drink.findById(drink._id)
+    .populate('owner')
+    .then(populatedDrink => {
+      // respond with JSON (drink)
+      res.json(populatedDrink)
+    })
+  })
+  .catch(err => {
+    console.log(err)
+    res.status(500).json({err: err.errmsg})
+  })
 }
 
+function index(req, res) {
+  Drink.find({})
+  .populate('owner')
+  .then(puppies => {
+    res.json(puppies)
+  })
+  .catch(err => {
+    console.log(err)
+    res.status(500).json({err: err.errmsg})
+  })
+}
+
+function deleteOne(req, res) {
+  Drink.findById(req.params.id)
+  .then(drink => {
+    if (drink.owner._id.equals(req.user.profile)) {
+      Drink.findByIdAndDelete(drink._id)
+      .then(deletedDrink => {
+        res.json(deletedDrink)
+      })
+    } else {
+      res.status(401).json({err: "Not authorized!"})
+    }
+  })
+  .catch(err => {
+    console.log(err)
+    res.status(500).json({err: err.errmsg})
+  })
+}
+
+function update(req, res) {
+  Drink.findById(req.params.id)
+  .then(drink => {
+    if (drink.owner._id.equals(req.user.profile)) {
+      Drink.findByIdAndUpdate(req.params.id, req.body, {new: true})
+      .populate('owner')
+      .then(updatedDrink => {
+        res.json(updatedDrink)
+      })
+    } else {
+      res.status(401).json({err: "Not authorized!"})
+    }
+  })
+  .catch(err => {
+    console.log(err)
+    res.status(500).json({err: err.errmsg})
+  })
+}
+
+// function addPhoto(req, res) {
+//   const imageFile = req.files.photo.path
+//   Drink.findById(req.params.id)
+//   .then(drink => {
+//     cloudinary.uploader.upload(imageFile, {tags: `${drink.name}`})
+//     .then(image => {
+//       console.log(image)
+//       drink.imageURL = image.url
+//       drink.save()
+//       .then(drink => {
+//         res.status(201).json(drink.photo)
+//       })
+//     })
+//     .catch(err => {
+//       console.log(err)
+//       res.status(500).json(err)
+//     })
+//   })
+// }
+
+export {
+  create,
+  index,
+  deleteOne as delete,
+  update,
+  // addPhoto
+}
