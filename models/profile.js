@@ -7,7 +7,8 @@ const hangoverTipSchema = new mongoose.Schema({
 
 const profileSchema = new mongoose.Schema({
   email: { type: String, required: true, lowercase: true, unique: true },
-  name: String,
+  name: {type: String },
+  photo: { type: String },
   hangoverTip: [hangoverTipSchema],
   favoriteDrinks:[{type:mongoose.Schema.Types.ObjectId, ref:"Drink"}],
   drinkList: [{type:mongoose.Schema.Types.ObjectId, ref:"Drink"}]
