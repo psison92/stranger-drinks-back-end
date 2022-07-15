@@ -1,5 +1,7 @@
 import { Ingredient } from '../models/ingredient.js';
 import { Drink } from '../models/drink.js'
+import { v2 as cloudinary } from 'cloudinary'
+
 
 function create(req, res) {
   req.body.owner = req.user.profile
@@ -67,30 +69,30 @@ function update(req, res) {
   })
 }
 
-// function addPhoto(req, res) {
-//   const imageFile = req.files.photo.path
-//   Drink.findById(req.params.id)
-//   .then(drink => {
-//     cloudinary.uploader.upload(imageFile, {tags: `${drink.name}`})
-//     .then(image => {
-//       console.log(image)
-//       drink.imageURL = image.url
-//       drink.save()
-//       .then(drink => {
-//         res.status(201).json(drink.photo)
-//       })
-//     })
-//     .catch(err => {
-//       console.log(err)
-//       res.status(500).json(err)
-//     })
-//   })
-// }
+function addPhoto(req, res) {
+  const imageFile = req.files.photo.path
+  Drink.findById(req.params.id)
+  .then(drink => {
+    cloudinary.uploader.upload(imageFile, {tags: `${drink.name}`})
+    .then(image => {
+      console.log(image)
+      drink.imageURL = image.url
+      drink.save()
+      .then(drink => {
+        res.status(201).json(drink.photo)
+      })
+    })
+    .catch(err => {
+      console.log(err)
+      res.status(500).json(err)
+    })
+  })
+}
 
 export {
   create,
   index,
   deleteOne as delete,
   update,
-  // addPhoto
+  addPhoto
 }
