@@ -8,7 +8,7 @@ const drinkSchema = new mongoose.Schema({
   imageURL: String,
   owner: { type: mongoose.Schema.Types.ObjectId, ref: 'Profile' },
   isAlcoholic: Boolean,
-  ingredients: [{type: mongoose.Schema.Types.ObjectId, ref: "Ingredient"}],
+  recipe: [{type: mongoose.Schema.Types.ObjectId, ref: "Ingredient"}],
   reviews: [{type: mongoose.Schema.Types.ObjectId, ref: "Review"}]
 }, {
   timestamps: true
