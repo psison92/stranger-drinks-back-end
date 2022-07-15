@@ -21,8 +21,8 @@ function create(req, res) {
 function index(req, res) {
   Drink.find({})
   .populate('owner')
-  .then(puppies => {
-    res.json(puppies)
+  .then(drinks => {
+    res.json(drinks)
   })
   .catch(err => {
     console.log(err)
