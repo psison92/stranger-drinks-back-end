@@ -14,11 +14,8 @@ const measurementSchema = new Schema({
   timestamps: true
 })
 
-const Ingredient = mongoose.model('Measurement', measurementSchema)
+const Measurement = mongoose.model('Measurement', measurementSchema)
 
 export {
   Measurement
 }
-
-
-recipe: [],
