@@ -1,11 +1,13 @@
 import { Drink } from '../models/drink.js'
 import { v2 as cloudinary } from 'cloudinary'
 
-
 function create(req, res) {
   req.body.owner = req.user.profile
   Drink.create(req.body)
   .then(drink => {
+    // Put in the measurements and their ingredient object Ids
+    // Then save the drink?
+    // Similar to create a ticket in mongoose flights
     Drink.findById(drink._id)
     .populate('owner')
     .then(populatedDrink => {
