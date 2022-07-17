@@ -16,6 +16,19 @@ function create(req, res) {
   })
 }
 
+function index(req, res) {
+  Review.find({})
+  .populate('author')
+  .then(reviews => {
+    res.json(reviews)
+  })
+  .catch(err => {
+    console.log(err)
+    res.status(500).json({err: err.errmsg})
+  })
+}
+
 export {
   create,
+  index,
 }
