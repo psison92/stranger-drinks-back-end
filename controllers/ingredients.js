@@ -12,7 +12,19 @@ function create(req, res) {
   })
 }
 
+function index(req, res) {
+  Ingredient.find({})
+  .then(ingredients => {
+    res.json(ingredients)
+  })
+  .catch(err => {
+    console.log(err)
+    res.status(500).json({err: err.errmsg})
+  })
+}
+
 
 export {
   create,
+  index
 }
