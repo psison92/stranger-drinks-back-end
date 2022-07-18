@@ -14,6 +14,15 @@ const measurementSchema = new Schema({
   timestamps: true
 })
 
+const reviewSchema = new Schema ({
+  author: {type: mongoose.Schema.Types.ObjectId, ref: "Profile"},
+  content: {type: String, required: true},
+  title: {type: String, required: true},
+  rating: {type: Number},
+}, {
+  timestamps: true
+})
+
 const drinkSchema = new Schema({
   name: { type: String, required: true},
   alternateName: String,
@@ -21,7 +30,7 @@ const drinkSchema = new Schema({
   owner: { type: Schema.Types.ObjectId, ref: 'Profile' },
   isAlcoholic: Boolean,
   recipe: [measurementSchema],
-  reviews: [{type: Schema.Types.ObjectId, ref: "Review"}]
+  reviews: [reviewSchema]
 }, {
   timestamps: true
 })

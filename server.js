@@ -8,7 +8,6 @@ import { router as profilesRouter } from './routes/profiles.js'
 import { router as authRouter } from './routes/auth.js'
 import { router as drinksRouter } from './routes/drinks.js'
 import { router as ingredientsRouter } from './routes/ingredients.js'
-import { router as reviewsRouter } from './routes/reviews.js'
 
 import './config/database.js'
 
@@ -23,7 +22,6 @@ app.use('/api/profiles', profilesRouter)
 app.use('/api/auth', authRouter)
 app.use('/api/drinks', drinksRouter)
 app.use('/api/ingredients',ingredientsRouter)
-app.use('/api/reviews', reviewsRouter)
 
 app.use(function (req, res, next) {
   res.status(404).json({ err: 'Not found' })
