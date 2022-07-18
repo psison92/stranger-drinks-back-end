@@ -6,7 +6,16 @@ function create(req, res) {
   Drink.create(req.body)
   .then(drink => {
     Drink.findById(drink._id)
-    .populate('owner')
+    .populate([
+      {
+        path: 'owner'
+      }, {
+        path: 'recipe',
+        populate: {
+          path: 'ingredient'
+        }
+      }
+    ])
     .then(populatedDrink => {
       // respond with JSON (drink)
       res.json(populatedDrink)
