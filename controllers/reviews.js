@@ -46,8 +46,28 @@ function deleteOne(req, res) {
   })
 }
 
+function update(req, res) {
+  Review.findById(req.params.id)
+  .then(review => {
+    if (review.author._id.equals(req.user.profile)) {
+      Review.findByIdAndUpdate(req.params.id, req.body, {new: true})
+      .populate('author')
+      .then(updatedReview => {
+        res.json(updatedReview)
+      })
+    } else {
+      res.status(401).json({err: "Not authorized!"})
+    }
+  })
+  .catch(err => {
+    console.log(err)
+    res.status(500).json({err: err.errmsg})
+  })
+}
+
 export {
   create,
   index,
   deleteOne as delete,
+  update
 }
