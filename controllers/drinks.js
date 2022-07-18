@@ -20,13 +20,16 @@ function create(req, res) {
 
 function index(req, res) {
   Drink.find({})
-  .populate('owner')
-  .populate({
-    path: 'recipe',
-    populate: {
-      path: 'ingredient'
+  .populate([
+    {
+      path: 'owner'
+    }, {
+      path: 'recipe',
+      populate: {
+        path: 'ingredient'
+      }
     }
-  })
+  ])
   .then(drinks => {
     res.json(drinks)
   })
