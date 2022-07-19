@@ -6,7 +6,16 @@ function create(req, res) {
   Drink.create(req.body)
   .then(drink => {
     Drink.findById(drink._id)
-    .populate('owner')
+    .populate([
+      {
+        path: 'owner'
+      }, {
+        path: 'recipe',
+        populate: {
+          path: 'ingredient'
+        }
+      }
+    ])
     .then(populatedDrink => {
       // respond with JSON (drink)
       res.json(populatedDrink)
@@ -62,7 +71,16 @@ function update(req, res) {
   .then(drink => {
     if (drink.owner._id.equals(req.user.profile)) {
       Drink.findByIdAndUpdate(req.params.id, req.body, {new: true})
-      .populate('owner')
+      .populate([
+        {
+          path: 'owner'
+        }, {
+          path: 'recipe',
+          populate: {
+            path: 'ingredient'
+          }
+        }
+      ])
       .then(updatedDrink => {
         res.json(updatedDrink)
       })
