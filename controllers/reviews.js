@@ -2,10 +2,17 @@ import { Review } from "../models/review.js";
 
 function create(req, res) {
   req.body.author = req.user.profile
+  req.body.drink = req.params.drinkId
   Review.create(req.body)
   .then(review => {
     Review.findById(review._id)
-    .populate('author')
+    .populate([
+      {
+        path: 'author'
+      }, {
+        path: 'drink'
+      }
+    ])
     .then(populatedReview => {
       res.json(review)
     })
@@ -18,7 +25,13 @@ function create(req, res) {
 
 function index(req, res) {
   Review.find({})
-  .populate('author')
+  .populate([
+    {
+      path: 'author'
+    }, {
+      path: 'drink'
+    }
+  ])
   .then(reviews => {
     res.json(reviews)
   })
@@ -51,7 +64,13 @@ function update(req, res) {
   .then(review => {
     if (review.author._id.equals(req.user.profile)) {
       Review.findByIdAndUpdate(req.params.id, req.body, {new: true})
-      .populate('author')
+      .populate([
+        {
+          path: 'author'
+        }, {
+          path: 'drink'
+        }
+      ])
       .then(updatedReview => {
         res.json(updatedReview)
       })

@@ -10,7 +10,7 @@ router.get('/', reviewsCtrl.index)
 
 /*---------- Protected Routes ----------*/
 router.use(decodeUserFromToken)
-router.post('/', checkAuth, reviewsCtrl.create)
+router.post('/:drinkId', checkAuth, reviewsCtrl.create)
 router.delete('/:id', checkAuth, reviewsCtrl.delete)
 router.put('/:id', checkAuth, reviewsCtrl.update)
 
