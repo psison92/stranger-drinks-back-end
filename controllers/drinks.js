@@ -96,10 +96,23 @@ function addPhoto(req, res) {
   })
 }
 
+function createReview(req, res) {
+  Drink.findById(req.params.id)
+  .then(drink => {
+    req.body.author = req.user.profile 
+    drink.reviews.push(req.body)
+    drink.save()
+    .then(drink => {
+      res.json(drink)
+    })
+  })
+}
+
 export {
   create,
   index,
   deleteOne as delete,
   update,
-  addPhoto
+  addPhoto,
+  createReview
 }
