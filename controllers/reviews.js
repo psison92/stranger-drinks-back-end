@@ -14,7 +14,7 @@ function create(req, res) {
       }
     ])
     .then(populatedReview => {
-      res.json(review)
+      res.json(populatedReview)
     })
   })
   .catch(err => {
