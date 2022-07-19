@@ -12,9 +12,24 @@ function index(req, res) {
 
 function show(req, res){
   Profile.findById(req.params.id)
-  .populate('hangoverTip')
+  .populate('drinkList')
   .then(profile => 
     res.json(profile))
+  .catch(err => {
+    console.log(err)
+    res.status(500).json(err)
+  })
+}
+
+function create(req, res) {
+  Profile.findById(req.params.id)
+  .then(profile => {
+    profile.hangoverTip.push(req.body)
+    profile.save()
+    .then(() => {
+      res.json(profile)
+    }) 
+  })
   .catch(err => {
     console.log(err)
     res.status(500).json(err)
@@ -43,5 +58,6 @@ function addPhoto(req, res) {
 export { 
   index, 
   addPhoto, 
-  show
+  show,
+  create
 }
