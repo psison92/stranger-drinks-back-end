@@ -12,6 +12,7 @@ router.use(decodeUserFromToken)
 router.get('/', checkAuth, profilesCtrl.index)
 router.get('/:id', checkAuth ,profilesCtrl.show)
 router.post('/:id/hangover-tip', checkAuth, profilesCtrl.create)
+router.delete('/hangover-tip/:tipId', checkAuth, profilesCtrl.delete)
 router.put('/:id/add-photo', checkAuth, profilesCtrl.addPhoto)
 
 export { router }
