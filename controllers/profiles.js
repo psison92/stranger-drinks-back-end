@@ -12,7 +12,7 @@ function index(req, res) {
 
 function show(req, res){
   Profile.findById(req.params.id)
-  .populate('drinkList')
+  .populate('hangoverTip')
   .then(profile => 
     res.json(profile))
   .catch(err => {
@@ -29,6 +29,32 @@ function create(req, res) {
     .then(() => {
       res.json(profile)
     }) 
+  })
+  .catch(err => {
+    console.log(err)
+    res.status(500).json(err)
+  })
+}
+
+function deleteTip(req, res) {
+// console.log(req.user.profile)
+  Profile.findById(req.user.profile)
+  .populate('hangoverTip')
+  .then(profile =>{
+    console.log(profile)
+    if(profile._id.equals(req.user.profile)){
+      profile.hangoverTip.remove({_id: req.params.tipId})
+      profile.save()
+        .then(deletedHangoverTip => {
+        console.log(deletedHangoverTip)
+        res.json(profile)
+      })
+    .catch(err => {
+      console.log(err)
+      res.status(500).json(err)
+    })
+  }
+
   })
   .catch(err => {
     console.log(err)
@@ -59,5 +85,6 @@ export {
   index, 
   addPhoto, 
   show,
-  create
+  create,
+  deleteTip as delete
 }
