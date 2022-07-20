@@ -1,4 +1,5 @@
 import { Drink } from '../models/drink.js'
+import { Review } from "../models/review.js";
 import { v2 as cloudinary } from 'cloudinary'
 
 function create(req, res) {
@@ -54,6 +55,9 @@ function deleteOne(req, res) {
     if (drink.owner._id.equals(req.user.profile)) {
       Drink.findByIdAndDelete(drink._id)
       .then(deletedDrink => {
+        Review.deleteMany({drink: deletedDrink._id})
+        .then(deletedReviews => console.log("Review Delete Summary: ", deletedReviews))
+        console.log('Deleted Drink: ', deletedDrink)
         res.json(deletedDrink)
       })
     } else {
