@@ -37,24 +37,23 @@ function create(req, res) {
 }
 
 function deleteTip(req, res) {
-// console.log(req.user.profile)
+console.log(req.user.profile)
   Profile.findById(req.user.profile)
   .populate('hangoverTip')
   .then(profile =>{
     console.log(profile)
     if(profile._id.equals(req.user.profile)){
-      profile.hangoverTip.remove({_id: req.params.tipId})
+      profile.hangoverTip.remove(req.params.tipId)
       profile.save()
-        .then(deletedHangoverTip => {
-        console.log(deletedHangoverTip)
-        res.json(profile)
+        .then(updatedProfile => {
+        console.log(updatedProfile)
+        res.json(updatedProfile)
       })
-    .catch(err => {
-      console.log(err)
-      res.status(500).json(err)
-    })
-  }
-
+      .catch(err => {
+        console.log(err)
+        res.status(500).json(err)
+      })
+    }
   })
   .catch(err => {
     console.log(err)
