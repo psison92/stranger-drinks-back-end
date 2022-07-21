@@ -13,6 +13,7 @@ router.get('/', checkAuth, profilesCtrl.index)
 router.get('/:id', checkAuth ,profilesCtrl.show)
 router.post('/:id/hangover-tip', checkAuth, profilesCtrl.create)
 router.delete('/hangover-tip/:tipId', checkAuth, profilesCtrl.delete)
+// router.put('/hangover-tip/:tipId', checkAuth, profilesCtrl.editTip)
 router.put('/:id/add-photo', checkAuth, profilesCtrl.addPhoto)
 
 export { router }
