@@ -2,6 +2,9 @@
 <p>Intro Text</p>
 <p>Decoupled MERN Stack with JWT Auth</p><br>
 
+## For more details on this project click this link that will take you to the README:
+https://github.com/psison92/stranger-drinks-front-end
+
 ## Getting Started: 
 **[![Heroku](https://img.shields.io/badge/heroku-%23430098.svg?style=for-the-badge&logo=heroku&logoColor=white) (Deployed Link)](https://localhost:3001/)**<br>
 **[![Trello](https://img.shields.io/badge/Trello-%23026AA7.svg?style=for-the-badge&logo=Trello&logoColor=white) (Plan Link)](https://trello.com/b/EDD05YLr/stranger-drinks)**<br><br>
