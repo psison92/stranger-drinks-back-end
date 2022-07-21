@@ -1,71 +1,17 @@
-# Decoupled MERN Stack with JWT Auth Template - Back End
+# Stranger Drinks (Back-End)
+<p>Intro Text</p>
+<p>Decoupled MERN Stack with JWT Auth</p><br>
 
-This is the back end of a decoupled MERN Stack app that includes JWT Authentication.
+## Getting Started: 
+**[![Heroku](https://img.shields.io/badge/heroku-%23430098.svg?style=for-the-badge&logo=heroku&logoColor=white) (Deployed Link)](https://localhost:3001/)**<br>
+**[![Trello](https://img.shields.io/badge/Trello-%23026AA7.svg?style=for-the-badge&logo=Trello&logoColor=white) (Plan Link)](https://trello.com/b/EDD05YLr/stranger-drinks)**<br><br>
 
-When combined with the front end found [here](https://github.com/SEI-Remote/decoupled-mern-jwt-auth-template-front-end), you'll have all you need to build a full stack MERN app!
+## Screenshot: 
+<img src="" alt="Alt Text" style="max-width: 95vw;">
 
-Use this to go build things! 🚀
+## Technologies Used: 
+![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E) ![NodeJS](https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white) ![Express.js](https://img.shields.io/badge/express.js-%23404d59.svg?style=for-the-badge&logo=express&logoColor=%2361DAFB) ![JWT](https://img.shields.io/badge/JWT-black?style=for-the-badge&logo=JSON%20web%20tokens) ![MongoDB](https://img.shields.io/badge/MongoDB-%234ea94b.svg?style=for-the-badge&logo=mongodb&logoColor=white) ![Heroku](https://img.shields.io/badge/heroku-%23430098.svg?style=for-the-badge&logo=heroku&logoColor=white)<br>
+<br><br>
 
-## To Use This Template
-
-**Replace `<name-of-your-app-here>` in the commands below with the name of your app!**
-
-```bash
-git clone https://github.com/SEI-Remote/decoupled-mern-jwt-auth-template-back-end <name-of-your-app-here>-back-end
-cd <name-of-your-app-here>-back-end
-```
-
-Once you are in the project directory:
-
-```bash
-rm -rf .git
-```
-
-Here's what your command line output should like after this step (note that the indicator that we are in a git repository is gone!)
-
-<img src="https://i.imgur.com/L47kNOZ.png" alt="The command line before and after running the rm -rf .git command. Before git:(main) is visible indiating that the directory contains a git repository, after the command it is not.">
-
-Re-initialize a git repository:
-
-```bash
-git init
-```
-
-Use the GitHub CLI to create a new public project repository on GitHub and add a remote named origin for this repo:
-
-```bash
-gh repo create <name-of-your-app-here>-back-end --public --source=. --remote=origin
-```
-
-Run npm i to fetch the template's dependencies:
-
-```bash
-npm i
-```
-
-touch a .env file:
-
-```bash
-touch .env
-```
-
-Fill it with the following:
-
-```
-DATABASE_URL=XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-SECRET=XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-```
-
-Replace the `DATABASE_URL` and `SECRET` with values that you provide.
-
-> 🚨 Place secrets in this `.env` file. The contents of this file WILL NOT be exposed to site visitors.
-
-Delete this README.md, then make an initial commit:
-
-```bash
-git add .
-git commit -m "initial commit"
-git push -u origin main
-```
-
-You're done!
+## Next Steps:
+- 
