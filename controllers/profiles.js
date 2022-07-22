@@ -78,6 +78,10 @@ function addPhoto(req, res) {
       res.status(500).json(err)
     })
   })
+  .catch(err => {
+    console.log(err)
+    res.status(500).json({err: err.errmsg})
+  })
 }
 
 export { 
