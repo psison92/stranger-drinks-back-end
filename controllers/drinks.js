@@ -21,6 +21,10 @@ function create(req, res) {
       // respond with JSON (drink)
       res.json(populatedDrink)
     })
+    .catch(err => {
+      console.log(err)
+      res.status(500).json({err: err.errmsg})
+    })
   })
   .catch(err => {
     console.log(err)
@@ -60,6 +64,10 @@ function deleteOne(req, res) {
         console.log('Deleted Drink: ', deletedDrink)
         res.json(deletedDrink)
       })
+      .catch(err => {
+        console.log(err)
+        res.status(500).json({err: err.errmsg})
+      })
     } else {
       res.status(401).json({err: "Not authorized!"})
     }
@@ -88,6 +96,10 @@ function update(req, res) {
       .then(updatedDrink => {
         res.json(updatedDrink)
       })
+      .catch(err => {
+        console.log(err)
+        res.status(500).json({err: err.errmsg})
+      })
     } else {
       res.status(401).json({err: "Not authorized!"})
     }
@@ -115,6 +127,10 @@ function addPhoto(req, res) {
       console.log(err)
       res.status(500).json(err)
     })
+  })
+  .catch(err => {
+    console.log(err)
+    res.status(500).json({err: err.errmsg})
   })
 }
 
