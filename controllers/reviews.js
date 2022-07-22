@@ -16,6 +16,10 @@ function create(req, res) {
     .then(populatedReview => {
       res.json(populatedReview)
     })
+    .catch(err => {
+      console.log(err)
+      res.status(500).json({err: err.errmsg})
+    })
   })
   .catch(err => {
     console.log(err)
@@ -49,6 +53,10 @@ function deleteOne(req, res) {
       .then(deletedReview => {
         res.json(deletedReview)
       })
+      .catch(err => {
+        console.log(err)
+        res.status(500).json({err: err.errmsg})
+      })
     } else {
       res.status(401).json({err: "Not authorized!"})
     }
@@ -73,6 +81,10 @@ function update(req, res) {
       ])
       .then(updatedReview => {
         res.json(updatedReview)
+      })
+      .catch(err => {
+        console.log(err)
+        res.status(500).json({err: err.errmsg})
       })
     } else {
       res.status(401).json({err: "Not authorized!"})
